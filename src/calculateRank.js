@@ -48,6 +48,7 @@ function calculateRank({
     STARS_WEIGHT +
     FOLLOWERS_WEIGHT;
 
+  /*
   const THRESHOLDS = [1, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
   const LEVELS = ["S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C"];
 
@@ -59,7 +60,11 @@ function calculateRank({
       STARS_WEIGHT * log_normal_cdf(stars / STARS_MEDIAN) +
       FOLLOWERS_WEIGHT * log_normal_cdf(followers / FOLLOWERS_MEDIAN)) /
       TOTAL_WEIGHT;
-
+  */
+  const THRESHOLDS = [1, 5, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
+  const LEVELS = ["S+", "S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C"];
+  const rank = 0.05;
+  
   const level = LEVELS[THRESHOLDS.findIndex((t) => rank * 100 <= t)];
 
   return { level, percentile: rank * 100 };
